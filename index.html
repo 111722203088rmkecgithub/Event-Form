@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .small {
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Register for the Event</h1>
+    <form id="eventForm" action="http://localhost:3000/submit-form" method="POST">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+
+        <label for="business_name">Business / Company Name:</label>
+        <input type="text" id="business_name" name="business_name" placeholder="Enter your business name" required>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="business_address" rows="3" placeholder="Enter your business address" required></textarea>
+
+        <label for="persons">No. of Persons Attending:</label>
+        <input type="number" id="persons" name="persons_attending" placeholder="Enter the number of attendees" min="1" required>
+
+        <label for="food">Food Required:</label>
+        <select id="food" name="food_required" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <div id="foodDetails" style="display: none;">
+            <label for="veg_persons">No. of Veg Persons:</label>
+            <input type="number" id="veg_persons" name="veg_persons" placeholder="Enter no. of veg attendees" min="0">
+
+            <label for="nonveg_persons">No. of Non-Veg Persons:</label>
+            <input type="number" id="nonveg_persons" name="nonveg_persons" placeholder="Enter no. of non-veg attendees" min="0">
+        </div>
+
+        <p class="small">* All fields are required.</p>
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        const foodDropdown = document.getElementById('food');
+        const foodDetails = document.getElementById('foodDetails');
+
+        foodDropdown.addEventListener('change', () => {
+            if (foodDropdown.value === 'Yes') {
+                foodDetails.style.display = 'block';
+            } else {
+                foodDetails.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
